@@ -1,0 +1,114 @@
+package twodarray;
+
+import java.util.Scanner;
+
+class MatrixOperations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of rows: ");
+        int rows = scanner.nextInt();
+        System.out.print("Enter the number of columns: ");
+        int columns = scanner.nextInt();
+
+        double[][] matrixA = new double[rows][columns];
+        double[][] matrixB = new double[rows][columns];
+
+        System.out.println("Enter the elements of Matrix A:");
+        readMatrix(scanner, matrixA);
+
+        System.out.println("Enter the elements of Matrix B:");
+        readMatrix(scanner, matrixB);
+
+        System.out.println("Matrix A:");
+        printMatrix(matrixA);
+        System.out.println("Matrix B:");
+        printMatrix(matrixB);
+
+        System.out.println("Matrix Addition (A + B):");
+        double[][] additionResult = addMatrices(matrixA, matrixB);
+        printMatrix(additionResult);
+
+        System.out.println("Matrix Subtraction (A - B):");
+        double[][] subtractionResult = subtractMatrices(matrixA, matrixB);
+        printMatrix(subtractionResult);
+
+        System.out.println("Matrix Multiplication (A * B):");
+        double[][] multiplicationResult = multiplyMatrices(matrixA, matrixB);
+        printMatrix(multiplicationResult);
+
+        System.out.println("Matrix Inversion (A^-1):");
+        double[][] inverseMatrix = invertMatrix(matrixA);
+        printMatrix(inverseMatrix);
+
+        scanner.close();
+    }
+
+    public static void readMatrix(Scanner scanner, double[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = scanner.nextDouble();
+            }
+        }
+    }
+
+    public static void printMatrix(double[][] matrix) {
+        for (double[] row : matrix) {
+            for (double value : row) {
+                System.out.print(value + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static double[][] addMatrices(double[][] A, double[][] B) {
+        int rows = A.length;
+        int columns = A[0].length;
+        double[][] result = new double[rows][columns];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                result[i][j] = A[i][j] + B[i][j];
+            }
+        }
+
+        return result;
+    }
+
+    public static double[][] subtractMatrices(double[][] A, double[][] B) {
+        int rows = A.length;
+        int columns = A[0].length;
+        double[][] result = new double[rows][columns];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                result[i][j] = A[i][j] - B[i][j];
+            }
+        }
+
+        return result;
+    }
+
+    public static double[][] multiplyMatrices(double[][] A, double[][] B) {
+        int rowsA = A.length;
+        int columnsA = A[0].length;
+        int columnsB = B[0].length;
+        double[][] result = new double[rowsA][columnsB];
+
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < columnsB; j++) {
+                for (int k = 0; k < columnsA; k++) {
+                    result[i][j] += A[i][k] * B[k][j];
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static double[][] invertMatrix(double[][] A) {
+
+        return A;
+    }
+}
+
